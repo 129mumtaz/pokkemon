@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokkemon/pages/home_page.dart';
+import 'package:pokkemon/pages/detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomePage(),
+      home: DetailPage(),
       debugShowCheckedModeBanner: false,
     );
   }
