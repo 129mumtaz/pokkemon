@@ -13,27 +13,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
   final List<Pokemon> pokemon = dataPokemon;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokemon Go"),
+        title: Text('Pokemon Go'),
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_outlined),
-        actions: [
-          Icon(Icons.favorite),
-          SizedBox(width: 10,)
-        ],
+        leading: Icon(Icons.arrow_back_ios_new_outlined),
+        actions: [Icon(Icons.favorite), SizedBox(width: 10)],
       ),
-      body:ListView.builder(
-      itemCount: pokemon.length,
-      itemBuilder: (BuildContext context, int index){
-        return PokemonList(pokemon: pokemon[index]);
-      })
+      body: ListView.builder(
+        itemCount: pokemon.length,
+        itemBuilder: (BuildContext context, int index) {
+          return PokemonList(pokemon: pokemon[index]);
+        },
+      )
     );
   }
 }

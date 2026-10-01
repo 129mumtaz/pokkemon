@@ -1,9 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_apps/models/pokemon.dart';
 
 class DetailPage extends StatelessWidget {
   final Pokemon pokemon;
-  
   const DetailPage({super.key, required this.pokemon});
 
   @override
@@ -11,7 +12,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(pokemon.name)),
       body: Column(
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ClipRRect(
@@ -20,8 +21,8 @@ class DetailPage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10.0),
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
+            margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.black12,
@@ -29,9 +30,9 @@ class DetailPage extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 Text(
-                  "Bulbasaur",
+                  'Pikachu',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -40,7 +41,6 @@ class DetailPage extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     color: Colors.blueAccent.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(999),
@@ -52,27 +52,21 @@ class DetailPage extends StatelessWidget {
                   ),
                   child: Text(pokemon.type),
                 ),
-                Text(
-                  "Base Power: ${pokemon.basePower}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Base Power : ${pokemon.basePower}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
-                SizedBox(height: 8),
                 Text(
-                  "Deskripsi",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  'Description',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 8),
-                Text(
-                  pokemon.description,
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(),
-                ),
+                Text(pokemon.description),
                 SizedBox(height: 8,),
-                Text(
-                  "Skills",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                Text('Skills', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                SizedBox(height: 8,),
                 Container(
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -83,11 +77,10 @@ class DetailPage extends StatelessWidget {
                     children: [
                       Icon(Icons.star),
                       SizedBox(width: 10,),
-                      Text("Water Bom"),
+                      Text('Thunderbolt'),
                     ],
                   ),
                 ),
-                SizedBox(height: 8,),
               ],
             ),
           ),
