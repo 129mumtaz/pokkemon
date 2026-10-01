@@ -15,4 +15,5 @@ class Pokemon {
     required this.description,
     required this.skills,
   });
+
 }

@@ -1,4 +1,4 @@
-import '../models/pokemon.dart';
+import 'package:flutter_apps/models/pokemon.dart';
 
 final List<Pokemon> dataPokemon = [
   // 1
