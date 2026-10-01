@@ -11,84 +11,101 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(pokemon.name)),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(20),
-              child: Image.asset(pokemon.image),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(20),
+                child: Image.asset(pokemon.image),
+              ),
             ),
-          ),
-          Container(
-            padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
-            margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.black12,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Pikachu',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(999),
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.blue,
-                      style: BorderStyle.solid,
+            Container(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
+              margin: EdgeInsetsDirectional.symmetric(horizontal: 10.0),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Pikachu',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Colors.black,
                     ),
                   ),
-                  child: Text(pokemon.type),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    'Base Power : ${pokemon.basePower}',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(999),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.blue,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
+                    child: Text(pokemon.type),
                   ),
-                ),
-                Text(
-                  'Description',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Text(pokemon.description),
-                SizedBox(height: 8,),
-                Text('Skills', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Wrap(
-                  children: pokemon.skills.map((e) => Container ()).toList(),
-                ),
-                Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.black12,
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      'Base Power : ${pokemon.basePower}',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  child: Row(
-                    // children: [
-                    //   Icon(Icons.star),
-                    //   SizedBox(width: 10,),
-                    //   Text('Waterboom'),
-                    // ],
+                  Text(
+                    'Description',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                ),
-                SizedBox(height: 8,)
-              ],
+                  Text(pokemon.description),
+                  SizedBox(height: 8,),
+                  Text('Skills', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Wrap(
+                    children: pokemon.skills.map(
+                      (e) => 
+                          Container (
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.blue,
+                                width: 1,
+                                style: BorderStyle.solid
+                              )
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.star),
+                                SizedBox(width: 8),
+                                Text(e),
+                              ],
+                            ),
+                          ))
+                       .toList(),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.black12,
+                    ),
+                  ),
+                  SizedBox(height: 8,)
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
