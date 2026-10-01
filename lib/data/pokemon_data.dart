@@ -1,11 +1,11 @@
-import 'package:pokkemon/models/pokemon.dart';
+import '../models/pokemon.dart';
 
-final List<Pokemon> pokemonData = [
+final List<Pokemon> dataPokemon = [
   // 1
   Pokemon(
     name: "Bulbasaur",
     image: "assets/bulbasaur.jpg",
-    type: "Grass/Poison",
+    type: "Grass",
     description:
     "Ada benih tanaman di punggungnya sejak lahir. Benih tersebut perlahan tumbuh membesar seiring pertumbuhan tubuhnya.",
     basePower: 318,
@@ -25,7 +25,7 @@ final List<Pokemon> pokemonData = [
   Pokemon(
     name: "Dragonite",
     image: "assets/dragonite.jpg",
-    type: "Dragon/Flying",
+    type: "Dragon",
     description:
     "Pokemon yang sangat baik hati dan suka menolong kapal yang karam di laut. Ia mampu mengelilingi dunia hanya dalam waktu 16 jam.",
     basePower: 600,
@@ -45,7 +45,7 @@ final List<Pokemon> pokemonData = [
   Pokemon(
     name: "Gengar",
     image: "assets/gengar.jpg",
-    type: "Ghost/Poison",
+    type: "Ghost",
     description:
     "Bersembunyi di dalam bayangan korbannya. Saat Gengar mendekat, suhu di sekelilingnya bisa mendadak turun drastis hingga terasa membeku.",
     basePower: 500,
@@ -55,7 +55,7 @@ final List<Pokemon> pokemonData = [
   Pokemon(
     name: "Jigglypuff",
     image: "assets/jigglypuff.jpg",
-    type: "Normal/Fairy",
+    type: "Fairy",
     description:
     "Mengembangkan tubuhnya untuk menyanyikan melodi merdu tanpa henti hingga membuat musuh dan siapapun di dekatnya tertidur lelap.",
     basePower: 270,
@@ -65,7 +65,7 @@ final List<Pokemon> pokemonData = [
   Pokemon(
     name: "Lucario",
     image: "assets/lucario.jpg",
-    type: "Fighting/Steel",
+    type: "Steel",
     description:
     "Mampu membaca dan mengendalikan gelombang aura yang dipancarkan oleh makhluk hidup di sekitarnya untuk mendeteksi lawan dari kejauhan.",
     basePower: 525,

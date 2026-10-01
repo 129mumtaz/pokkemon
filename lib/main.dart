@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokkemon/pages/detail_page.dart';
+import 'package:flutter_apps/pages/detail_page.dart';
+import 'package:flutter_apps/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pokedex',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,8 +32,11 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: DetailPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/home-page' : (context) => HomePage(), // route name
+      },
     );
   }
 }
