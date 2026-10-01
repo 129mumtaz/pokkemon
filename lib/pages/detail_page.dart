@@ -67,6 +67,9 @@ class DetailPage extends StatelessWidget {
                 SizedBox(height: 8,),
                 Text('Skills', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
+                Wrap(
+                  children: pokemon.skills.map((e) => Container ()).toList(),
+                ),
                 Container(
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
@@ -74,13 +77,14 @@ class DetailPage extends StatelessWidget {
                     color: Colors.black12,
                   ),
                   child: Row(
-                    children: [
-                      Icon(Icons.star),
-                      SizedBox(width: 10,),
-                      Text('Thunderbolt'),
-                    ],
+                    // children: [
+                    //   Icon(Icons.star),
+                    //   SizedBox(width: 10,),
+                    //   Text('Waterboom'),
+                    // ],
                   ),
                 ),
+                SizedBox(height: 8,)
               ],
             ),
           ),
