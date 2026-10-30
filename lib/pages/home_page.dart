@@ -73,9 +73,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Pokémon GO",
+          "POKEMON GO",
           style: TextStyle(
-            fontFamily: "Pokemon",
+            fontFamily: "PokemonSolid",
             fontSize: 32,
             color: Colors.amber,
           ),

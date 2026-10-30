@@ -94,8 +94,10 @@ class _DetailPageState extends State<DetailPage> {
           title: Text(
             pokemon.name,
             style: TextStyle(
-              fontFamily: 'Pokemon',
+              fontFamily: 'PokemonHollow',
               fontWeight: FontWeight.bold,
+              color: Colors.amber,
+              
             ),
           ),
           leading: IconButton(
