@@ -5,11 +5,10 @@ import 'package:flutter_apps/models/pokemon.dart';
 
 class PokemonList extends StatelessWidget {
   final Pokemon pokemon;
-  final String type;
   final bool isFavorite;
-
   final VoidCallback onTap;
   final VoidCallback onFavoriteTap;
+  final String type;
 
   const PokemonList({
     super.key,
@@ -46,21 +45,21 @@ class PokemonList extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-        side: BorderSide(color: _typerColor(), width: 1),
+        borderRadius: BorderRadiusGeometry.circular(15),
+        side: BorderSide(color: _typerColor()),
       ),
       child: ListTile(
         onTap: onTap,
         leading: Hero(
           tag: pokemon.name,
           child: ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(15),
             child: Image.asset(
               pokemon.image,
               width: 67,
               height: 67,
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadiusGeometry.circular(15),
           ),
         ),
         title: Text(
@@ -75,7 +74,6 @@ class PokemonList extends StatelessWidget {
         trailing: IconButton(
           onPressed: onFavoriteTap,
           icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-
           color: isFavorite ? Colors.pink : Colors.grey,
         ),
       ),

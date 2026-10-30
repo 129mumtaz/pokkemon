@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Pokemon> pokemon = dataPokemon;
 
-  String _searchQuery = '';
+  String _searchQuery = "";
   bool _showFavoriteOnly = false;
   final Set<String> _favoritePokemon = {};
   final TextEditingController _searchController = TextEditingController();
@@ -34,45 +34,55 @@ class _HomePageState extends State<HomePage> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => DetailPage(pokemon: pokemon, isFavorite: isFavorite),
+        builder: (_) => DetailPage(pokemon: pokemon, isFavorite: isFavorite, type: '',),
       ),
     );
-
+    // ! + =
     if (result != null) {
-      _favoritePokemon.add(pokemon.name);
-    } else {
-      _favoritePokemon.remove(pokemon.name);
+      setState(() {
+        if (result) {
+          _favoritePokemon.add(pokemon.name);
+        } else {
+          _favoritePokemon.remove(pokemon.name);
+        }
+      });
     }
   }
 
-  bool isSwitch = false;
+  bool isSwitch = false; // gak dipake sample aja
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(
+      context,
+    ).size; //mengatahui resolusi layar device
+
     //filter pokemon berdasarkan kata kunci
     final filtered = dataPokemon.where((p) {
+      // query => kata kunci yang diinputkan oleh user
       final q = _searchQuery.toLowerCase();
-      final matchesSearch = p.name.toLowerCase();
-
+      // cek apakah kata kunci ada di nama pokemon
+      final matchesSearch = p.name.toLowerCase().contains(q);
+      // cek apakah pokemon tersebut ada di favorite
       final matchesFavorite =
           !_showFavoriteOnly || _favoritePokemon.contains(p.name);
-      return matchesSearch.contains(q) && matchesFavorite;
+      // jika kata kunci ada di nama pokemon dan pokemon tersebut ada di favorite
+      return matchesSearch && matchesFavorite;
     }).toList();
-
-    var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Pokemon Go",
+          "Pokémon GO",
           style: TextStyle(
-            fontFamily: 'PokemonHollow',
-            fontWeight: FontWeight.bold,
+            fontFamily: "Pokemon",
+            fontSize: 32,
             color: Colors.amber,
           ),
         ),
         centerTitle: true,
         actions: [Text('$screenSize')],
+        // Text('$screenSize')
       ),
       body: Column(
         children: [
@@ -89,8 +99,8 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
                       hintText: "Search Pokemon",
+                      prefixIcon: Icon(Icons.search),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -111,14 +121,16 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
-                if (constraints.maxWidth <= 425) {
+                //425 Mobile
+                //768 Tablet
+                //1024 Desktop
+                if (constraints.maxWidth <= 504) {
                   return ListView.builder(
                     itemBuilder: (context, index) {
                       final pokemon = filtered[index];
                       final isFavorite = _favoritePokemon.contains(
                         pokemon.name,
                       );
-
                       return PokemonList(
                         pokemon: pokemon,
                         isFavorite: isFavorite,
@@ -135,36 +147,33 @@ class _HomePageState extends State<HomePage> {
                   );
                 } else {
                   int column = 2;
-                  if (constraints.maxWidth > 768) column = 3;
+                  if (constraints.maxWidth >= 768 && constraints.maxWidth < 1026){
+                    column = 3;
+                  }
                   if (constraints.maxWidth >= 1024) column = 4;
-
-                  return GridView.builder(
+                  return GridView.builder(  
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: column,
-                      childAspectRatio: 0.8,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 3 / 4,
                     ),
                     itemBuilder: (context, index) {
                       final pokemon = filtered[index];
                       final isFavorite = _favoritePokemon.contains(
                         pokemon.name,
                       );
-
                       return PokemonCard(
                         pokemon: pokemon,
-                        type: '',
+                        type: filtered[index].type,
                         isFavorite: isFavorite,
-                        onTap: () {
-                          _openDetail(pokemon, isFavorite);
-                        },
-                        onFavoriteTap: () {
-                          _toggleFavorite(pokemon.name);
-                        },
+                        onTap: () => _openDetail(pokemon, isFavorite),
+                        onFavoriteTap: () => _toggleFavorite(pokemon.name),
                       );
                     },
                     itemCount: filtered.length,
                   );
                 }
-                ;
               },
             ),
           ),

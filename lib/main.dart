@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_apps/pages/detail_page.dart';
 import 'package:flutter_apps/pages/home_page.dart';
 
 void main() {
@@ -33,6 +34,10 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/home-page' : (context) => HomePage(), // route name
+
+      },
     );
   }
 }

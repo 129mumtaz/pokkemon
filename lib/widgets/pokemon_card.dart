@@ -38,6 +38,7 @@ class PokemonCard extends StatelessWidget {
     }
 
     return InkWell(
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.all(15),
         decoration: BoxDecoration(
@@ -46,36 +47,35 @@ class PokemonCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Expanded(
-              child: Stack(
-                children: [
-                  Hero(
-                    tag: pokemon.name,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        pokemon.image,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: double.infinity,
-                      ),
+            Stack(
+              // fit: StackFit.expand,
+              // clipBehavior: Clip.antiAliasWithSaveLayer,
+              // textDirection: TextDirection.ltr,
+              children: [
+                Hero(
+                  tag: pokemon.name,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      pokemon.image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 200,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: FloatingActionButton(
-                      backgroundColor: Colors.transparent,
-                      onPressed: () {
-                        onFavoriteTap();
-                      },
-                      child: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.pink : Colors.white,
-                      ),
-                    ),
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      onFavoriteTap();
+                    },
+                    backgroundColor: Colors.transparent,
+                    child: IconButton(onPressed: onFavoriteTap, icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_outline_rounded), color: isFavorite? Colors.pink : Colors.grey,)
+                    
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
